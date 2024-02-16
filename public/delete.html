@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href="#">
+            <p>home</p>
+        </a>
+        <a href="post.html">
+            <p>criar cadastro</p>
+        </a>
+        <a href="index.html">
+            <p>buscar cadastro</p>
+        </a>
+        <a href="put.html">
+            <p>atualizar dados</p>
+        </a>
+        <a href="delete.html">
+            <p>deletar cadastro</p>
+        </a>
+
+        <div class="centro">
+            
+            <h1>Formulário! Protocolo HTTP - CRUD</h1>
+            <form>
+                <h3>DELETE</h3>
+                <label>CPF:</label>
+                <input type="text" id="cpf">
+                <input class="btn" type="button" onclick="deletarDados()" value="Deletar">
+            </form>
+        </div>
+        <Footer>
+            
+                <ul>Contato: @@@@@@@@@@@@@@</ul>
+                <ul>Redes: @jffsdfdfs</ul>
+            
+        </Footer>
+    <script>
+        function deletarDados() {
+            const cpf = document.getElementById("cpf").value;
+          
+            fetch(`pessoas`)
+              .then(response => response.json())
+              .then(data => {
+                document.getElementById('cpf').value = '';
+                data.forEach(obj => {
+                  if (obj.cpf === cpf) {
+                    fetch(`pessoas/${obj.id}`, {
+                      method: 'DELETE'
+                    });
+                  }
+                });
+              });
+          }
+    </script>
+</body>
+</html>
